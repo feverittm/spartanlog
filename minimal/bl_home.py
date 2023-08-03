@@ -7,7 +7,6 @@ from .auth import *
 bp = Blueprint('bl_home', __name__)
 
 @bp.route('/', methods=('GET', 'POST'))
-@manage_cookie_policy
 def index():
     
     mc = set_menu("home") #to highlight menu option
@@ -15,7 +14,6 @@ def index():
 
 
 @bp.route('/about', methods=('GET', 'POST'))
-@manage_cookie_policy
 def about():
 
     mc = set_menu("about")

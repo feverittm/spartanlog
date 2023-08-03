@@ -14,12 +14,6 @@ def create_app():
     from . import bl_home
     app.register_blueprint(bl_home.bp)
 
-    from . import bl_modals
-    app.register_blueprint(bl_modals.bp)
-
-    from . import bl_niceurls
-    app.register_blueprint(bl_niceurls.bp)
-
     #Add other blueprints if needed
 
     from . import auth
@@ -30,7 +24,6 @@ def create_app():
     app.register_error_handler(404, error_404)
 
     #JINJA FILTERS
-    app.jinja_env.filters['slugify'] = slugify
     app.jinja_env.filters['displayError'] = displayError 
     app.jinja_env.filters['displayMessage'] = displayMessage
 
