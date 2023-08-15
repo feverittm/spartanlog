@@ -1,7 +1,7 @@
 from datetime import datetime
 from flask import current_app
 import hashlib
-from . import db
+from app import db
 
 
 class Position:
@@ -53,4 +53,4 @@ class Team(db.Model):
         return self.status == True
 
     def __repr__(self):
-        return '<Member %r>' % self.first
+        return '<Member %r, %r>' % (self.first, self.last)

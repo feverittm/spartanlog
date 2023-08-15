@@ -1,33 +1,32 @@
-from flask import (
-    Blueprint, render_template, request, send_from_directory
-)
-from .layoutUtils import *
-from .auth import *
+from datetime import datetime
+from flask import render_template, flash, redirect, url_for, request, g, \
+    jsonify, current_app
+from app import db
+from app.models import Team
+from app.main import main
 
-bp = Blueprint('bl_home', __name__)
-
-@bp.route('/', methods=('GET', 'POST'))
+@main.route('/', methods=('GET', 'POST'))
 def index():
     
     mc = set_menu("home") #to highlight menu option
     return render_template('home/index.html', mc=mc)
 
 
-@bp.route('/about', methods=('GET', 'POST'))
+@main.route('/about', methods=('GET', 'POST'))
 def about():
 
     mc = set_menu("about")
     return render_template('home/about.html', mc=mc)
 
 
-@bp.route('/privacy-notice',methods=('GET', 'POST'))
+@main.route('/privacy-notice',methods=('GET', 'POST'))
 def privacy():
 
     mc = set_menu("")
     return render_template('home/privacy-notice.html', mc=mc)
 
 
-@bp.route('/terms-of-service',methods=('GET', 'POST'))
+@main.route('/terms-of-service',methods=('GET', 'POST'))
 def termsofservice():
     mc = set_menu("")
     return render_template('home/terms-of-service.html', mc=mc)
