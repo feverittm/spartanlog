@@ -4,12 +4,16 @@ from flask import render_template, flash, redirect, url_for, request, g, \
 from app import db
 from app.models import Team
 from app.main import main
+from .layoutUtils import *
 
-@main.route('/', methods=('GET', 'POST'))
+@main.route('/', methods=['GET', 'POST'])
 def index():
-    
+    #form = PostForm()
+    team = Team.query.order_by(Team.timestamp.desc()).all()
+    #return render_template('index.html', form=form, team=team)
     mc = set_menu("home") #to highlight menu option
-    return render_template('home/index.html', mc=mc)
+    #return render_template('home/index.html', mc=mc)
+    return render_template('home/index.html', team=team, mc=mc)
 
 
 @main.route('/about', methods=('GET', 'POST'))
