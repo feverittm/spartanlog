@@ -1,8 +1,13 @@
 import os
-
+import click
+from flask_migrate import Migrate
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from models import Team
 from .jinjafilters import *
 from .errorhandlers import *
+
+db = SQLAlchemy()
 
 def create_app():
     # create and configure the app
@@ -10,6 +15,8 @@ def create_app():
     app.config.from_mapping(
         SECRET_KEY=os.environ['SESSION_SECRET'],
     )
+
+    db.init_app(app)
 
     from . import bl_home
     app.register_blueprint(bl_home.bp)
